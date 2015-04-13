@@ -1,5 +1,5 @@
 # hello-tutorial
 
-![Image](/documentation/images/screen1.png)
+![Image](/documentation/images/screen3.png)
 
-![Image](/documentation/images/screen2.png)
+![Image](/documentation/images/screen4.png)
