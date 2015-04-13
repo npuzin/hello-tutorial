@@ -26,14 +26,14 @@
                 <input type="text" class="form-control" ng-model="person.lastname">
               </div>            
               <button class="btn btn-primary" ng-click="sayHello()" ng-disabled="isSayHelloDisabled()">Say Hello</button>             
-              <h4 ng-bind="helloText"></h4>
+              <h4>{{helloText}}</h4>
             </form>                     
         </div>
         
         <div id="personsDiv">
             <ul>
                 <li ng-repeat="person in persons">
-                    Hello sent by {{person.firstname}} {{person.lastname}} on {{person.sentFormattedDate}} at {{person['sentFormattedTime']}}
+                    Hello sent by {{person.firstname}} {{person.lastname}} on {{person.sentFormattedDate}} at {{person.sentFormattedTime}}
                 </li>
             </ul>
         </div>
