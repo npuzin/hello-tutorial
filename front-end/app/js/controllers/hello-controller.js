@@ -4,7 +4,7 @@ angular.module('hello')
 
   .controller('HelloCtrl', ['$scope', '$http', function($scope, $http) {
 
-    $scope.showContact = false;
+    $scope.helloText = '';
     
     $scope.isSayHelloDisabled = function() {
 
@@ -17,18 +17,12 @@ angular.module('hello')
 
     $scope.sayHello = function() {
 
-      $scope.showContact = true;
+      $scope.helloText = 'Hello ' + $scope.person.firstname + ' ' + $scope.person.lastname + '!';      
       $http.post('rest/person', $scope.person).then(function (result) {
         $scope.refresh();
+        $scope.person.firstname = '';
+        $scope.person.lastname = '';
       });
-    };
-
-    $scope.again = function() { 
-
-      $scope.person.firstname = '';
-      $scope.person.lastname = '';
-      $scope.showContact = false;
-      $scope.refresh();
     };
 
     $scope.refresh = function() {

@@ -3,9 +3,12 @@ body {
 }
 #mainDiv {
 	width: 400px;
-	height: 260px;
 }
 
 #personsDiv {
 	padding-top: 20px;	
+}
+h4 {
+	display: inline-block;
+	padding-left: 20px;
 }
