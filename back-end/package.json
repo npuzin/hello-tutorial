@@ -1,0 +1,10 @@
+{
+  "name": "hello-back-end",
+  "version": "1.0.0",
+  "description": "",  
+  "author": "npuzin",  
+  "dependencies": {
+    "express": "~4.12.3",
+    "mysql": "~2.6.1"
+  }
+}
