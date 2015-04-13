@@ -1,37 +1,26 @@
 var express = require('express');
 var app = express();
-var mysql = require('mysql');
-var port = 8080;
+var port = 8084;
+var db = require('./db.js');
 
-process.on('uncaughtException', function (exception) {
-  console.log(exception.stack);
-});
+var errorHandler = function(err, res) {
 
-var getConnection = function() {
-
-  var connection = mysql.createConnection({
-    host     : '127.0.0.1',
-    user     : 'root',
-    password : 'pass-1234'
-  });
-
-  connection.connect();
-  return connection;
+  console.error(err.stack);
+  res.status(500);
+  res.send({error: err});
 };
 
 app.get('/rest/hello', function (req, res) {
   
   console.log('GET /rest/hello');
-  var connection = getConnection();
-  connection.query('SELECT * from nico.hello order by sent desc', function(err, rows, fields) {
-    if (err) {
-      throw err;
-    }
-
-    res.send(rows);
+  db.getPeople(function(err, rows) {
+    if (err) {      
+      errorHandler(err,res);
+    } else {
+      res.send(rows);
+    }    
   });
-
-  connection.end();
+    
 });
 
 app.listen(port, function () {

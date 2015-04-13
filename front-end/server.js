@@ -1,19 +1,20 @@
 var express = require('express');
 var app = express();
 var httpProxy = require('http-proxy');
-var apiProxy = httpProxy.createProxyServer();
+var proxy = httpProxy.createProxyServer();
 var port = 9001;
-var backendServerUrl = 'http://localhost:8080';
+var backendServerUrl = 'http://localhost:8084';
 var backendRedirectUrl = '/rest/*';
 
-process.on('uncaughtException', function (exception) {
-  console.log(exception.stack);
-});
-
 app.get(backendRedirectUrl, function(req, res){ 
-  apiProxy.web(req, res, { 
+  proxy.web(req, res, { 
     target: backendServerUrl 
   });
+});
+
+proxy.on('error', function(error) {
+  console.error('A proxy error happened');
+  console.error(error.stack);
 });
 
 app.use(express.static(__dirname + '/app'));
