@@ -9,36 +9,38 @@ angular.module('hello')
     $scope.isSayHelloDisabled = function() {
 
       return !$scope.person ||
-        !$scope.person.firstName ||
-        $scope.person.firstName.length === 0 ||
-        !$scope.person.lastName ||
-        $scope.person.lastName.length === 0;
+        !$scope.person.firstname ||
+        $scope.person.firstname.length === 0 ||
+        !$scope.person.lastname ||
+        $scope.person.lastname.length === 0;
     };
 
     $scope.sayHello = function() {
 
       $scope.showContact = true;
-      $scope.refresh();
+      $http.post('rest/person', $scope.person).then(function (result) {
+        $scope.refresh();
+      });
     };
 
     $scope.again = function() { 
 
-      $scope.person.firstName = '';
-      $scope.person.lastName = '';
+      $scope.person.firstname = '';
+      $scope.person.lastname = '';
       $scope.showContact = false;
       $scope.refresh();
     };
 
     $scope.refresh = function() {
 
-      $http.get('rest/hello').then(function (result) {
+      $http.get('rest/person/all').then(function (result) {
         $scope.persons = result.data;
         $scope.persons.forEach(function(person) {
 
           var datetime = moment(person.sent);
           person.sentFormattedDate = datetime.format('DD/MM/YYYY');
-          person.sentFormattedTime = datetime.format('hh:mm:ss');
-        })
+          person.sentFormattedTime = datetime.format('HH:mm:ss');
+        });
       });
     };
 

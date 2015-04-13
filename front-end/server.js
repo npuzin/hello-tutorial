@@ -6,7 +6,7 @@ var port = 9001;
 var backendServerUrl = 'http://localhost:8084';
 var backendRedirectUrl = '/rest/*';
 
-app.get(backendRedirectUrl, function(req, res){ 
+app.all(backendRedirectUrl, function(req, res){ 
   proxy.web(req, res, { 
     target: backendServerUrl 
   });
