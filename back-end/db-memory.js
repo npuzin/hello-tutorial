@@ -1,11 +1,16 @@
+var Q = require('q');
 var people = [];
 
-exports.getPeople = function(resultCallback) {  
-  resultCallback(null, people);  
-}
+exports.getPeople = function() {  
+  var dfr = Q.defer();
+  dfr.resolve(people);  
+  return dfr.promise;
+};
 
 exports.insertPerson = function(person, resultCallback) {
   person.sent = Date.now();
   people.push(person);
-  resultCallback(null, person);
-}
+  var dfr = Q.defer();
+  dfr.resolve(person);  
+  return dfr.promise;
+};

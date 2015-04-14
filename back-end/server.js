@@ -2,8 +2,8 @@ var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
 var port = 8084;
-//var db = require('./db-mysql.js');
-var db = require('./db-memory.js');
+var db = require('./db-mysql.js');
+//var db = require('./db-memory.js');
 
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
@@ -24,24 +24,20 @@ app.post('/rest/person', function (req, res) {
     
   var person = req.body;
 
-  db.insertPerson(person, function(err) {
-    if (err) {      
-      errorHandler(err,res);
-    } else {
-      res.send();
-    }    
-  });
+  db.insertPerson(person).then(function(){
+    res.send();
+  }, function (error) {
+    errorHandler(error,res);
+  });   
 });
 
 app.get('/rest/person/all', function (req, res) {
     
-  db.getPeople(function(err, rows) {
-    if (err) {      
-      errorHandler(err,res);
-    } else {
-      res.send(rows);
-    }    
-  });
+  db.getPeople().then(function(people){
+    res.send(people);
+  }, function (error) {
+    errorHandler(error,res);
+  });    
     
 });
 
