@@ -37,8 +37,7 @@ app.get('/rest/person/all', function (req, res) {
     res.send(people);
   }, function (error) {
     errorHandler(error,res);
-  });    
-    
+  });        
 });
 
 app.listen(port, function () {

@@ -1,21 +1,15 @@
 var Q = require('q');
 var mysql = require('mysql');
-
-var getConnection = function() {
-
-  var connection = mysql.createConnection({
-    host     : '127.0.0.1',
-    user     : 'root',
-    password : 'pass-1234'
-  });
-
-  connection.connect();
-  return connection;
+var mysqlConnectionDetails = {
+  host     : '127.0.0.1',
+  user     : 'root',
+  password : 'pass-1234'
 };
 
 exports.getPeople = function(resultCallback) {
   var dfr = Q.defer();
-  var connection = getConnection();
+  var connection = mysql.createConnection(mysqlConnectionDetails);
+  connection.connect();
   connection.query('SELECT * from hello.person order by sent', function(error, rows) {
     if (error) {
       dfr.reject(error);
@@ -29,7 +23,8 @@ exports.getPeople = function(resultCallback) {
 
 exports.insertPerson = function(person, resultCallback) {
   var dfr = Q.defer();
-  var connection = getConnection();
+  var connection = mysql.createConnection(mysqlConnectionDetails);
+  connection.connect();
   connection.query('INSERT INTO hello.person SET ?',person, function (error, rows) {
     if (error) {
       dfr.reject(error);
