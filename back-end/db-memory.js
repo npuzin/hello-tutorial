@@ -7,7 +7,7 @@ exports.getPeople = function() {
   return dfr.promise;
 };
 
-exports.insertPerson = function(person, resultCallback) {
+exports.insertPerson = function(person) {
   person.sent = Date.now();
   people.push(person);
   var dfr = Q.defer();

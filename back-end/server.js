@@ -3,7 +3,7 @@ var app = express();
 var bodyParser = require('body-parser');
 var port = 8084;
 var routing = require('./routing');
-var config = require('./config.json');
+var config = require('./config');
 
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());

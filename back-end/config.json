@@ -1,4 +1,9 @@
 {
 	"debug": true,
-	"useMysqlDatabase": false
+	"useMysqlDatabase": false,
+	"mysql": {
+	  "host": "127.0.0.1",
+	  "user": "root",
+	  "password": "pass-1234"
+	};
 }

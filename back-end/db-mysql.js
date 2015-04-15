@@ -1,14 +1,10 @@
 var Q = require('q');
 var mysql = require('mysql');
-var mysqlConnectionDetails = {
-  host     : '127.0.0.1',
-  user     : 'root',
-  password : 'pass-1234'
-};
+var config = require('config');
 
-exports.getPeople = function(resultCallback) {
+exports.getPeople = function() {
   var dfr = Q.defer();
-  var connection = mysql.createConnection(mysqlConnectionDetails);
+  var connection = mysql.createConnection(config.mysqlConnectionDetails);
   connection.connect();
   connection.query('SELECT * from hello.person order by sent', function(error, rows) {
     if (error) {
@@ -21,9 +17,9 @@ exports.getPeople = function(resultCallback) {
   return dfr.promise;
 }
 
-exports.insertPerson = function(person, resultCallback) {
+exports.insertPerson = function(person) {
   var dfr = Q.defer();
-  var connection = mysql.createConnection(mysqlConnectionDetails);
+  var connection = mysql.createConnection(config.mysqlConnectionDetails);
   connection.connect();
   connection.query('INSERT INTO hello.person SET ?',person, function (error, rows) {
     if (error) {
