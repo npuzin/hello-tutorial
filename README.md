@@ -1,6 +1,6 @@
 # Une application 3-tier avec AngularJS, NodeJS et ExpressJS
 
-Le projet suivant illustre comment développer une application robuste, scallable, multiplateforme et performante entièrement écrite en Javascript. Cette application étant multiplateforme, elle pourraêtre hébergée et developpée dans un environnement Windows, Linux ou encore MacOSX. L'architecture utilisée est une architecture 3-tier utilisée depuis de nombreuses années et dont l'efficacité à été maintes fois démontrée.
+Le projet suivant illustre comment développer une application robuste, scallable, multiplateforme et performante entièrement écrite en Javascript. Cette application étant multiplateforme, elle pourra être hébergée et developpée dans un environnement Windows, Linux ou encore MacOSX. L'architecture utilisée est une architecture 3-tier utilisée depuis de nombreuses années et dont l'efficacité n'est plus à démontrer dans un environnement de production.
 
 L'application se compose donc des 3 couches suivantes:
 
@@ -16,12 +16,14 @@ La deuxième couche est la couche **métier**. Elle est installée sur le serveu
 
 La troisième couche est la couche de **données**. C'est le serveur de base de données. Dans notre exemple, nous utiliserons une base de données MySQL.
 
-Voici le résulat attendu: 
+Voici le diagramme d'architecture: 
+
+![Image](/documentation/images/architecture.png)
+
+## Les captures d'écran de l'application: 
 
 ![Image](/documentation/images/screen3.png)
 
 ![Image](/documentation/images/screen4.png)
 
-## Diagramme d'architecture
 
-![Image](/documentation/images/architecture.png)
