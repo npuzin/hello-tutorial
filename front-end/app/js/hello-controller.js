@@ -2,7 +2,7 @@
 
 angular.module('hello')
 
-  .controller('HelloCtrl', ['$scope', '$http', function($scope, $http) {
+  .controller('HelloCtrl', ['$scope', 'remote', function($scope, remote) {
 
     $scope.helloText = '';
     
@@ -18,7 +18,7 @@ angular.module('hello')
     $scope.sayHello = function() {
 
       $scope.helloText = 'Hello ' + $scope.person.firstname + ' ' + $scope.person.lastname + '!';      
-      $http.post('rest/person', $scope.person).then(function (result) {
+      remote.insertPerson($scope.person).then(function (result) {
         $scope.refresh();
         $scope.person.firstname = '';
         $scope.person.lastname = '';
@@ -27,7 +27,7 @@ angular.module('hello')
 
     $scope.refresh = function() {
 
-      $http.get('rest/person/all').then(function (result) {
+      remote.getPeople().then(function (result) {
         $scope.persons = result.data;
         $scope.persons.forEach(function(person) {
 

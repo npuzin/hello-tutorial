@@ -20,6 +20,6 @@ proxy.on('error', function(error) {
 app.use(express.static(__dirname + '/app'));
 
 app.listen(port, function () {  
-  console.log('Font-end server listening on port %s', port);
+  console.log('Front-end server listening on port %s', port);
   console.log('Proxy set up: %s -> %s', backendRedirectUrl, backendServerUrl);
 });
