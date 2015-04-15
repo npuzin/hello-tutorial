@@ -1,4 +1,4 @@
-var config = require('./config.json');
+var config = require('./config');
 var db;
 if (config.useMysqlDatabase) {
   db = require('./db-mysql');
